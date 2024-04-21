@@ -11,8 +11,9 @@ func TestMain(t *testing.T) {
 	if doStuff() != expected {
 		t.Errorf("doStuff(): got %v want %v",
 			doStuff(), expected)
-	} else {
-		t.Errorf("erroeeer")
 	}
+	// } else {
+	// 	t.Errorf("erroeeer")
+	// }
 
 }
