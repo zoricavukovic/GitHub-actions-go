@@ -10,6 +10,7 @@ clean:
 
 build:
 	mkdir -p bin
+	go get .
 	go build -o bin/service main.go
 	go run main.go
 

@@ -19,7 +19,12 @@ jobs:
       - name: Set up Go
         uses: actions/setup-go@v5
         with:
-          go-version: '1.22'
+          go-version: '1.22.x'
+      - name: Print log
+        run: |
+          echo ls -a
+          cd bin
+          echo ls -a
 
       # - name: Build
       #   run: make build
@@ -27,7 +32,7 @@ jobs:
       - name: Test
         run: make test #za sada se samo brzi testovi izvrsavaju
 
-      - name: Archive code coverage results
+      - name: Upload Go test results
         uses: actions/upload-artifact@v4
         with:
           name: code-coverage-report
@@ -54,7 +59,7 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
     
   integration-test:
-    needs: build
+    needs: build-and-test
     name: Integration Test
     runs-on: ubuntu-latest
     steps:
