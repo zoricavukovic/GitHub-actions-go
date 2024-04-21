@@ -12,7 +12,7 @@ func TestMain(t *testing.T) {
 		t.Errorf("doStuff(): got %v want %v",
 			doStuff(), expected)
 	} else {
-		t.Errorf("error")
+		t.Errorf("erroeeer")
 	}
 
 }
