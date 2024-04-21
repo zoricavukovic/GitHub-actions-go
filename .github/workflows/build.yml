@@ -20,14 +20,15 @@ jobs:
         uses: actions/setup-go@v5
         with:
           go-version: '1.22.x'
+      
+      - name: Build
+        run: make build
+
       - name: Print log
         run: |
-          echo ls -a
+          ls -a
           cd bin
-          echo ls -a
-
-      # - name: Build
-      #   run: make build
+          ls -a
 
       - name: Test
         run: make test #za sada se samo brzi testovi izvrsavaju
