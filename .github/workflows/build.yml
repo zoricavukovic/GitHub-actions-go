@@ -10,7 +10,7 @@ jobs:
         name: Build
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@main #ispraviti
+            - uses: actions/checkout@main #ispravit TODO 
             - uses: actions/setup-go@v5
               with:
                 go-version: '1.22'
