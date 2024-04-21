@@ -12,7 +12,6 @@ build:
 	mkdir -p bin
 	go get .
 	go build -o bin/service main.go
-	go run main.go
 
 test: build
 	go test -short -coverprofile=bin/cov.out `go list ./... | grep -v vendor/`

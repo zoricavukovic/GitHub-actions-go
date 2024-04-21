@@ -30,7 +30,6 @@ jobs:
           cd bin
           ls -a
 
-
       - name: Test
         run: make test #za sada se samo brzi testovi izvrsavaju
 
