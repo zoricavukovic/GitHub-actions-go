@@ -1,14 +1,25 @@
-name: Hello world
+name: Workflow
 
 on: 
-    push:
-        branches:
-            - main
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+    types: [opened, synchronize, reopened]
 
 jobs:
-    Hello:
-        runs-on: ubuntu-latest
-        steps:
-            - name: Hello World!
-              run: |
-                echo "Hello world"
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.22'
+      - run: |
+          go run main.go
+          echo "cao"
+    
