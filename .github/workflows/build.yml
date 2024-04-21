@@ -9,25 +9,33 @@ on:
 
 jobs:
 
-  build:
+  build-and-test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4 #ispravit TODO 
         with:
           fetch-depth: 0
+
       - name: Set up Go
         uses: actions/setup-go@v5
         with:
           go-version: '1.22'
-      - run: make test
+
+      # - name: Build
+      #   run: make build
+
+      - name: Test
+        run: make test #za sada se samo brzi testovi izvrsavaju
+
       - name: Archive code coverage results
         uses: actions/upload-artifact@v4
         with:
           name: code-coverage-report
           path: bin
+
     
   sonar-cloud:
-    needs: build
+    needs: build-and-test
     name: SonarCloud
     runs-on: ubuntu-latest
     steps:

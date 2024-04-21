@@ -11,10 +11,11 @@ clean:
 build:
 	mkdir -p bin
 	go build -o bin/service main.go
+	go run main.go
 
 test: build
 	go test -short -coverprofile=bin/cov.out `go list ./... | grep -v vendor/`
-	go tool cover -func=bin/cov.out
+	go tool cover -func=bin/cov.out 
 
 
 sonar: test

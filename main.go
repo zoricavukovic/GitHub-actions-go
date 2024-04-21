@@ -8,14 +8,17 @@ func doStuff() string {
 	return "I do stuff!"
 }
 
-func add(x uint, y uint) uint {
-	return x
+func add(x string, y uint) uint {
+	return y
 }
 
 func main() {
 	var x uint = 9  //0000 1001
 	var y uint = 65 //0100 0001
 
-	fmt.Println(add(y, x))
-
+	fmt.Println(add("asda", x))
+	fmt.Println(add("asda", y))
+	fmt.Println(add("asda", x))
+	fmt.Println(add("asda", x))
+	fmt.Println("asda")
 }
