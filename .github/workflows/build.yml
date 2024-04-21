@@ -22,9 +22,9 @@ jobs:
           go-version: '1.22.x'
       - name: Print log
         run: |
-          echo ls -a
+          ls -a
           cd bin
-          echo ls -a
+          ls -a
 
       # - name: Build
       #   run: make build
