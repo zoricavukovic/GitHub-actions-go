@@ -32,5 +32,11 @@ func main() {
 	fmt.Println(add("asda", y))
 	fmt.Println(add("asda", x))
 	fmt.Println(add("asda", x))
+	fmt.Println(add("asda", y))
+	fmt.Println(add("asda", x))
+	fmt.Println(add("asda", x))
+	fmt.Println(add("asda", y))
+	fmt.Println(add("asda", x))
+	fmt.Println(add("asda", x))
 	fmt.Println("asda")
 }
