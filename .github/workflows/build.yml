@@ -58,11 +58,21 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-    
-  integration-test:
+          
+  release:
     needs: build-and-test
     name: Integration Test
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
-        - run: echo Should run integration tests.
+      - uses: actions/checkout@v3
+      - uses: actions/setup-go@v3
+        with:
+          go-version: 1.19
+      - uses: go-semantic-release/action@v1
+        with:
+          hooks: goreleaser
+        env:
+          GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
 
