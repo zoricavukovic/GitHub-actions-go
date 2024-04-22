@@ -1,3 +1,3 @@
-module service-sonar
+module service
 
 go 1.20

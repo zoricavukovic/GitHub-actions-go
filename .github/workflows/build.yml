@@ -9,25 +9,39 @@ on:
 
 jobs:
 
-  build:
+  build-and-test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4 #ispravit TODO 
         with:
           fetch-depth: 0
+
       - name: Set up Go
         uses: actions/setup-go@v5
         with:
-          go-version: '1.22'
-      - run: make test
-      - name: Archive code coverage results
+          go-version: '1.22.x'
+      
+      - name: Build
+        run: make build
+
+      - name: Print log
+        run: |
+          ls -a
+          cd bin
+          ls -a
+
+      - name: Test
+        run: make test #za sada se samo brzi testovi izvrsavaju
+
+      - name: Upload Go test results
         uses: actions/upload-artifact@v4
         with:
           name: code-coverage-report
           path: bin
+
     
   sonar-cloud:
-    needs: build
+    needs: build-and-test
     name: SonarCloud
     runs-on: ubuntu-latest
     steps:
@@ -44,11 +58,21 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-    
-  integration-test:
-    needs: build
+          
+  release:
+    needs: build-and-test
     name: Integration Test
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
-        - run: echo Should run integration tests.
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.22.x'
+      - uses: go-semantic-release/action@v1
+        with:
+          hooks: goreleaser
+        env:
+          GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
 
