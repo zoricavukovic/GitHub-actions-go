@@ -6,6 +6,7 @@ import (
 
 func doStuff() string {
 	return "I do stuff!"
+
 }
 
 func add(x string, y uint) uint {
